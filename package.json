@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "hono": "^4.12.22",
+    "snoowrap": "^1.23.0"
+  },
+  "devDependencies": {
+    "@types/snoowrap": "^1.16.1",
+    "vitest": "^4.1.7"
+  }
+}
