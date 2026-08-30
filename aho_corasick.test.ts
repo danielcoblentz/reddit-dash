@@ -1,14 +1,14 @@
 import { beforeAll, describe, it, expect } from 'vitest';
 import { build, search, go, getLink } from './aho_corasick';
 
-// global trie `t` is built once — patterns are fixed for the whole file
+// global trie `t` is built once - patterns are fixed for the whole file
 const PATTERNS = ['he', 'she', 'his', 'hers'];
 
 beforeAll(() => {
   build(PATTERNS);
 });
 
-describe('search — basic matches', () => {
+describe('search - basic matches', () => {
   it('finds overlapping patterns at the same position', () => {
     // she@3, he@3 via suffix link, hers@5
     expect(search('ushers')).toEqual([3, 3, 5]);
@@ -31,7 +31,7 @@ describe('search — basic matches', () => {
   });
 });
 
-describe('search — multiple and repeated matches', () => {
+describe('search - multiple and repeated matches', () => {
   it('finds the same pattern at multiple positions', () => {
     // "hehe": "he" ends at index 1 and index 3
     expect(search('hehe')).toEqual([1, 3]);
@@ -48,7 +48,7 @@ describe('search — multiple and repeated matches', () => {
   });
 });
 
-describe('go — transitions', () => {
+describe('go - transitions', () => {
   it('follows a real edge off the root', () => {
     expect(go(0, 'h')).not.toBe(0);
   });
@@ -57,14 +57,14 @@ describe('go — transitions', () => {
     expect(go(0, 'z')).toBe(0);
   });
 
-  it('is idempotent — the cached transition is stable', () => {
+  it('is idempotent - the cached transition is stable', () => {
     // verifies the go[] memoization returns the same node index
     const first = go(0, 's');
     expect(go(0, 's')).toBe(first);
   });
 });
 
-describe('getLink — suffix links', () => {
+describe('getLink - suffix links', () => {
   it('links the root to itself', () => {
     expect(getLink(0)).toBe(0);
   });
