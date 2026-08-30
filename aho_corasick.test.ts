@@ -1,3 +1,4 @@
+import { beforeAll, describe, it, expect } from 'vitest';
 import { build, search, go, getLink } from './aho_corasick';
 
 // global trie `t` is built once — patterns are fixed for the whole file
